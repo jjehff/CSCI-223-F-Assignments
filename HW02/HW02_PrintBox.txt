@@ -1,0 +1,10 @@
+====================================
+HW02: PrintBox (02/07/2024)
+====================================
+
+Score: 9/10
+
+PrintChars is only supposed to have two parameters, no?
+
+Hopefully the video review showed you how to adhere to the problem
+description, let me know if you have any questions!
