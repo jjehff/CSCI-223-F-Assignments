@@ -1,0 +1,9 @@
+HW02: PrintBox
+Since we just looked at functions, it's time to write some, don't you think? For this program you're going to draw a (potentially) hollow box with a border of asterisks. You'll prompt the user for the width and height to use, and a character used to display the box borders. Then -- you'll draw the box! However, to get the job done you'll write a few functions:
+
+main: this function will get the width and height values from the user, if either of them are invalid an error message will be displayed and the program will terminate. However, if integers are successfully read and the values look okay, you'll get a display character from the user so you can draw the box with it. Then the PrintBox function is called, passing the width and height values as arguments, along with the display character.
+PrintBox: this function receives from the caller the width and height of the box to draw, as well as the character to use to draw the box. It can then use the PrintChars function for support in drawing the (potentially) hollow box.
+PrintChars: this function will be responsible for drawing one or more characters to the screen. It will receive two arguments from the caller: the character to print, and the number of characters to print. It returns nothing to the caller.
+Note that the PrintBox function depends entirely upon the PrintChars function to draw the box. In other words, the only functions that get to use the standard library (e.g., printf) to draw to the screen are main (to interact with the user at the keyboard) and PrintChars (to draw characters to the screen).
+
+If you look in the HW02 directory of your ssh account, you'll find a sample executable sample_pbox to give you a better idea of the target behavior. To run the program, just type ./sample_pbox and press the 'Enter' key. Save all your code in the file printbox.c so I can fetch for our next class session. Have fun, remember to think outside the box!
