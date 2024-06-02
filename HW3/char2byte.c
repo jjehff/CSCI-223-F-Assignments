@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+	auto int c = 0;
+	auto int count = 0;
+	while (EOF != (c = getchar())) {
+		printf("%02X", (unsigned char) c);
+		count++;
+		if (count != 20) {
+			printf(" ");
+	    } else {
+			printf("\n");
+			count = 0;
+		}
+	}
+}
