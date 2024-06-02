@@ -1,0 +1,70 @@
+
+----------------------------------------
+STACK FRAME FOR MAIN
+----------------------------------------
+
+
+Take the array 'myInts' as an example, you could draw it like this:
+
+                  +---+
+    myInts[0x100] +   | [0]
+                  +---+
+          [0x104] +   | [1]
+                  +---+
+          [0x108] +   | [2]
+                  +---+
+          [0x10C] +   | [3]
+                  +---+
+          [0x110] +   | [4]
+                  +---+
+
+                  etc...
+
+                  +---+
+          [0x1C4] +   | [49]
+                  +---+
+
+
+It's an array of ints, and each int occupies four bytes in memory. But
+if you take a closer look at its physical layout, it's just a solid
+block of bytes:
+
+                  +---+    <--+
+   myInts [0x100] +   |       |
+                  +---+       |
+          [0x101] +   |       |
+                  +---+       |  myInts[0] 
+          [0x102] +   |       | 
+                  +---+       |
+          [0x103] +   |       |
+                  +---+    <--+
+          [0x104] +   |       |
+                  +---+       | 
+          [0x105] +   |       |  myInts[1]
+                  +---+       | 
+          [0x106] +   |       | 
+                  +---+       | 
+          [0x107] +   |       | 
+                  +---+    <--+
+          [0x108] +   |       | 
+                  +---+       | 
+          [0x109] +   |       | 
+                  +---+       |  myInts[2]
+          [0x10A] +   |       | 
+                  +---+       | 
+          [0x10B] +   |       | 
+                  +---+    <--+
+          [0x10C] +   |       | 
+                  +---+       | 
+
+                  etc...
+
+                  +---+
+          [0x1C4] +   | [49]
+                  +---+
+
+See how each integer in the array is four bytes in size? So what
+functions like CountMatchBytes and DispBytes need to do is be able to
+walk through a block of bytes -- whether it's a block of ints, double,
+chars, whatever -- and look at that block, one byte at a time.
+

@@ -1,0 +1,24 @@
+=========================================
+Project: Sorted LL (04/20/2024)
+=========================================
+
+Score: A
+
+On the surface, everything looks like it's running correctly, I didn't
+detect any memory leaks or errors. However, you have a slight problem
+in the FreeList function...
+
+Inside the loop you have these statements:
+
+   free(currentNode);
+   currentNode = currentNode->next;
+
+The problem here is the order of operations. If you free currentNode,
+then at that point the value of the pointer is no longer valid and
+should not be used. However, you're using it in the statement that
+follows when you dereference to access the 'next' member. One fix is
+to use the lead/trail pointer technique, so that you can advance the
+lead pointer and call the 'free' function with the trail pointer.
+
+So you've got a slight bug to fix, but overall you've done a fine job
+here, congratulations!

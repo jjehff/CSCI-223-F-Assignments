@@ -1,0 +1,73 @@
+================================================================================
+File: PosixThreadsPrograms.txt
+================================================================================
+
+
+                           Posix Threads Exercises
+
+
+--------------------------------------------------------------------------------
+Program: mthreads01.c
+--------------------------------------------------------------------------------
+
+*) Build 1
+
+Write a program that takes as input two integer arguments,
+representing the microsecond intervals to use for the primary and
+secondary threads. Convert the command line arguments into unsigned
+longs which are stored in local variables. Run the program to verify
+the correct conversion of the integer arguments.
+
+
+*) Build 2
+
+In the main function, setup the primary thread loop by writing a
+string to stdout indicating that the primary thread is executing (also
+display the microsecond interval it's using). Then call the usleep
+function using the primary thread microsecond interval as an
+argument. Run the program to verify proper execution of the primary
+thread loop.
+
+
+*) Build 3
+
+Create a secondary thread with a call to pthread_create, specifying a
+pointer to the secondary thread function and the argument to send to
+that function (which is the microseconds interval to use for the
+secondary thread).
+
+Write a secondary thread function ThreadFunc, using the function
+signature you see in the pthread man page. When this function is
+called it will receive the argument that was specified in the call the
+pthread_create (which should be the microseconds interval to use for
+the secondary thread). All this function has to do is enter an
+infinite loop where it will announce itself and call usleep.
+
+Run the program with a variety of command line arguments to see how
+you can control the speed with which the threads execute!
+
+
+
+--------------------------------------------------------------------------------
+Program: mthreads02.c
+--------------------------------------------------------------------------------
+
+This is an extension of mthreads01.c; instead of the program being
+limited to just two threads, this version will create as many threads
+as are necessary depending upon what is found on the command line. For
+example, if the user types this:
+
+       ./a.out 1000000 3000000 2000000 5000000
+
+the program should use the first integer value as the microseconds
+interval for the primary thread, and all the remaining integers as the
+intervals for additional secondary threads. To help identify
+individual threads, you should maintain an integer counter which can
+be incremented and associated with each thread as it is created; that
+way a thread will be able to display the thread number you've
+associated with it.
+
+This way when a secondary thread is created, the thread function will
+be called and receive the secondary thread's counter number along with
+its sleep interval. (Hmm, how will you send both values to the thread
+function?)
