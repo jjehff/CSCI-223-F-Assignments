@@ -228,10 +228,12 @@ void    DisplayMenu(void)
 int     FreeList(LNode  **headPtr)
 {
 	LNode *currentNode = *headPtr;
-	auto int temp;
-	while (currentNode != NULL) { // free all allocated memory
+	LNode *nextNode = *headPtr;
+	auto int temp = 0;
+	while (nextNode != NULL) { // free all allocated memory
 		free(currentNode);
-		currentNode = currentNode->next;
+		nextNode = nextNode->next;
+		currentNode = nextNode;
 		temp++;
 	}
 	*headPtr = NULL; // set headptr back to null
